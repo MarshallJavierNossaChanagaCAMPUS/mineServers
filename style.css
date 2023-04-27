@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body, main{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.blur{
+    background-image: url(img/bg1.gif);
+    filter: blur(5px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -999;
+}
+.container-logo{
+    width: 100%;
+}
+.minecraft-logo{
+    margin-top: 80px !important;
+    width: 45%;
+    height: auto;
+}
+.container-buttons{
+    height: 70%;
+}
+.button-container{
+    height: 25%;
+    width: 100%;
+}
+.buttons{
+    height: 50px;
+    width: 40%;
+}
+.credits{
+    z-index: 100;
+    color: white;
+}
