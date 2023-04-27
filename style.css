@@ -1,6 +1,14 @@
+@font-face {
+    font-family: "Minecraft";
+    src: url(fonts/Minecraft.ttf);
+}
+
 *{
     margin: 0;
     padding: 0;
+}
+body p{
+    
 }
 body, main{
     position: fixed;
@@ -25,6 +33,20 @@ body, main{
     width: 45%;
     height: auto;
 }
+.container-logo-text{
+
+}
+.logoText{
+    position: fixed;
+    margin-left: 700px;
+    margin-top: 170px;
+    color: rgb(255, 238, 0);
+    font-family: "Minecraft";
+    font-size: 40px;
+    text-shadow: 0.1em 0.1em #333;
+    -webkit-transform: rotate(-20deg); 
+    -moz-transform: rotate(-20deg);
+}
 .container-buttons{
     height: 70%;
 }
@@ -35,6 +57,10 @@ body, main{
 .buttons{
     height: 50px;
     width: 40%;
+    background-color: rgb(99, 99, 99);
+    color: white;
+    font-family: "Minecraft";
+    font-size: 20px;
 }
 .credits{
     z-index: 100;
