@@ -1,0 +1,111 @@
+@font-face {
+    font-family: "Minecraft";
+    src: url(../fonts/Minecraft.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body, main{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.blur{
+    background-image: url(../img/bg1.gif);
+    filter: blur(5px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -999;
+}
+.container-logo{
+    width: 100%;
+}
+.minecraft-logo{
+    margin-top: 80px !important;
+    width: 45%;
+    height: auto;
+}
+.logoText{
+    position: fixed;
+    margin-left: 700px;
+    margin-top: 170px;
+    color: rgb(255, 238, 0);
+    font-family: "Minecraft";
+    font-size: 40px;
+    text-shadow: 0.1em 0.1em #333;
+    -webkit-transform: rotate(-20deg); 
+    -moz-transform: rotate(-20deg);
+}
+.container-buttons{
+    height: 70%;
+}
+.button-container{
+    height: 25%;
+    width: 100%;
+}
+.buttons{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(99, 99, 99);
+    color: white;
+    font-family: "Minecraft";
+    font-size: 20px;
+}
+.buttons_a{
+    height: 50px;
+    width: 40%;
+}
+.credits{
+    z-index: 100;
+    color: white;
+}
+
+/* SERVER */
+header{
+    width: 100%;
+    height: 10%;
+}
+.nav{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/dirt-background.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searcher{
+    height: 40px;
+    width: 40%;
+}
+.main_container{
+    width: 100%;
+    height: 75%;
+    background-image: url("../img/background_server.jpg");
+    background-size: cover;
+}
+.buttons_foot{
+    width: 100%;
+    height: 25%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/dirt-background.jpg");
+    background-size: cover;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+.buttons_server{
+    width: 300px;
+    height: 45px;
+    color: rgb(255, 255, 255);
+    background-color: gray;
+    font-family: "Minecraft";
+    text-shadow: 0.1em 0.1em #333;
+}
+.buttons_server_a{
+    margin-top: 55px;
+    text-decoration: none;
+}
