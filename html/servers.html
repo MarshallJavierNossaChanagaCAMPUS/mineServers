@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <header>
+    <header id="header">
         <div class="nav">
             <input class="searcher" type="text">
         </div>
@@ -23,28 +23,35 @@
 
             <div class="servers overflow-auto">
 
-                
-            
-                
             </div>
-
-            
 
         </div>
             
         <div class="buttons_foot col">
-            <div class="row">
-                <a class="buttons_server_a" href="www.twitch.tv/donpiola"><button class="buttons_server">Entrar</button></a>
-                <a class="buttons_server_a" href="www.twitch.tv/donpiola"><button class="buttons_server">Añadir servidor</button></a>
-            </div>
-            
-            <div class="row">
-                <a class="buttons_server_a" href="www.twitch.tv/donpiola"><button class="buttons_server">Pagina anterior</button></a>
-                <a class="buttons_server_a" href="www.twitch.tv/donpiola"><button class="buttons_server">Siguiente pagina</button></a>
+
+                <a class="buttons_server_a" href=""><button class="buttons_server" disabled>Entrar</button></a>
+                <a class="buttons_server_a" id="anadir_servidor"><button class="buttons_server">Añadir servidor</button></a>
                 <a class="buttons_server_a" href="../index.html"><button class="buttons_server">Cerrar</button></a>
-            </div>
-            
+
         </div>
     </main>
+
+    <div class="modal_padre">
+        <div class="modal_servers row">
+            <div class="inputs_servers col-4">
+                <p>Nombre del servidor</p>
+                <input class="inputs" type="text" name="name"> <br> <br>
+                <p>IP del servidor</p>
+                <input class="inputs" type="text" name="ip"> <br> <br>
+            </div>
+            <div class="col-12 buttons_modal">
+                <a class="buttons_server_a" href=""><button class="buttons_server" id="guardar_servidor">Guardar</button></a>
+                <a class="buttons_server_a" href=""><button class="buttons_server" id="cancelar_servidor">Cancelar</button></a>
+            </div>
+        </div>
+    </div>
+
+<!--      -->
+
 </body>
 </html>
