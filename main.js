@@ -1,30 +1,33 @@
+/* import "./components/my-server.js"; */
+import  "./components/my-index.js";
+
 let dataServers = [];
 
 /* Botones index */
 
-let index = document.querySelector("#main_index");
-let multiplayerBtn = document.querySelector("#multiplayer");
+/* let index = document.querySelector("#main_index");
+let multiplayerBtn = document.querySelector("#multiplayer"); */
 
 /* Botones servers */
 
-let serverss = document.querySelector("#container_multiplayer");
+/* let serverss = document.querySelector("#container_multiplayer");
 let servers = document.querySelector(".servers");
 
 let anadirServidor = document.querySelector("#anadir_servidor");
-let cerrar = document.querySelector("#cerrar_servers");
+let cerrar = document.querySelector("#cerrar_servers"); */
 
 /* Botones modal */
 
-let modal = document.querySelector(".modal_padre");
+/* let modal = document.querySelector(".modal_padre");
 
 let guardarServidor = document.querySelector("#guardar_servidor");
 let cancelarServidor = document.querySelector("#cancelar_servidor");
 
-serverss.classList.add("modal_padre");
+serverss.classList.add("modal_padre"); */
 
 /* Eventos de escucha */
 
-multiplayerBtn.addEventListener("click", (e) => {
+/* multiplayerBtn.addEventListener("click", (e) => {
   e.preventDefault();
   index.classList.add("modal_padre");
   serverss.classList.remove("modal_padre");
@@ -86,19 +89,9 @@ guardarServidor.addEventListener("click", (e) => {
     );
   };
 
-  const clickCards = async function () {
-    await showServer();
-    let cards = document.querySelectorAll(".cards");
-    cards.forEach(element => {
-        element.addEventListener("click",(e)=>{
-            console.log(e.target.id);
-        })
-    });
-}
-
-    clickCards();
+  showServer();
 
   serverss.classList.remove("modal_padre");
   modal.classList.add("modal_padre");
-});
+}); */
 
