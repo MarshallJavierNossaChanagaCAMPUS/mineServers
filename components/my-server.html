@@ -1,59 +1,60 @@
 <div id="container_multiplayer">
-    <div id="header">
-      <div class="nav">
-        <input class="searcher" type="text" />
-      </div>
-    </div>
-
-    <div class="main_container">
-      <div class="servers overflow-auto"></div>
-    </div>
-
-    <div class="buttons_foot col">
-      <a class="buttons_server_a"
-        ><button class="buttons_server" disabled>Eliminar servidor</button></a
-      >
-      <a class="buttons_server_a" id="anadir_servidor"
-        ><button class="buttons_server">Añadir servidor</button></a
-      >
-      <a class="buttons_server_a"
-        ><button id="cerrar_servers" class="buttons_server">Cerrar</button></a
-      >
+  <div id="header">
+    <div class="nav">
+      <input class="searcher" type="text" />
     </div>
   </div>
 
-  <div id="modalsito" class="modal_padre">
-    <div class="modal_servers row">
-      <div class="inputs_servers col-4">
-        <p>Nombre del servidor</p>
-        <input class="inputs" type="text" name="name" /> <br />
-        <br />
-        <p>IP del servidor</p>
-        <input class="inputs" type="text" name="ip" /> <br />
-        <br />
-      </div>
-      <div class="col-12 buttons_modal">
-        <a class="buttons_server_a"
-          ><button class="buttons_server" id="guardar_servidor">
-            Guardar
-          </button></a
-        >
-        <a class="buttons_server_a"
-          ><button class="buttons_server" id="cancelar_servidor">
-            Cancelar
-          </button></a
-        >
-      </div>
-    </div>
+  <div class="main_container">
+    <div class="servers overflow-auto"></div>
   </div>
 
-  <style>
-    @font-face {
-        font-family: "Minecraft";
-        src: url(../fonts/Minecraft.ttf);
-      }
-    /* SERVER */
-#container_multiplayer {
+  <div class="buttons_foot col">
+    <a class="buttons_server_a"
+      ><button class="buttons_server" disabled>Eliminar servidor</button></a
+    >
+    <a class="buttons_server_a" id="anadir_servidor"
+      ><button class="buttons_server">Añadir servidor</button></a
+    >
+    <a class="buttons_server_a"
+      ><button id="cerrar_servers" class="buttons_server">Cerrar</button></a
+    >
+  </div>
+</div>
+
+<div id="modalsito" class="modal_padre">
+  <div class="modal_servers row">
+    <form id="form" class="inputs_servers col-4">
+      <p>Nombre del servidor</p>
+      <input class="inputs" type="text" name="name" /> <br />
+      <br />
+      <p>IP del servidor</p>
+      <input class="inputs" type="text" name="ip" /> <br />
+      <br />
+    </form>
+
+    <div class="col-12 buttons_modal">
+      <a class="buttons_server_a"
+        ><button class="buttons_server" id="guardar_servidor">
+          Guardar
+        </button></a
+      >
+      <a class="buttons_server_a"
+        ><button class="buttons_server" id="cancelar_servidor">
+          Cancelar
+        </button></a
+      >
+    </div>
+  </div>
+</div>
+
+<style>
+  @font-face {
+    font-family: "Minecraft";
+    src: url(../fonts/Minecraft.ttf);
+  }
+  /* SERVER */
+  #container_multiplayer {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -90,14 +91,14 @@
     background-size: cover;
     box-sizing: border-box;
   }
-  .servers{
+  .servers {
     width: 70%;
     overflow: auto;
     height: 45rem;
     margin: auto !important;
     box-sizing: border-box;
   }
-  .cards{
+  .cards {
     width: 90%;
     height: 25%;
     display: flex;
@@ -192,6 +193,8 @@
     height: 50px;
     background-color: #333;
     color: rgb(255, 255, 255);
+    font-family: "Minecraft";
+    font-size: 25px;
   }
   .buttons_modal {
     width: 100%;
@@ -200,4 +203,4 @@
     flex-direction: column;
     align-items: center !important;
   }
-  </style>
+</style>
