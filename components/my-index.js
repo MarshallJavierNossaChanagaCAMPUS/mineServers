@@ -1,4 +1,5 @@
-import config from "./config.js";
+import config from "../components/config.js";
+
 
 export default class myIndex extends HTMLElement{
     static url = import.meta.url;
@@ -10,6 +11,13 @@ export default class myIndex extends HTMLElement{
         this.attachShadow({mode: "open"});
         Promise.resolve(myIndex.components()).then(html => {
             this.shadowRoot.innerHTML = html;
+            this.myServer = document.querySelector("#myServer");
+            this.myIndex = document.querySelector("#myIndex");
+            this.multiplayer = this.shadowRoot.querySelector("#multiplayer");
+            this.multiplayer.addEventListener("click", (e)=>{
+                this.myIndex.classList.add("modal_padre")
+                this.myServer.classList.remove("modal_padre")
+            })
         })
     };
 };

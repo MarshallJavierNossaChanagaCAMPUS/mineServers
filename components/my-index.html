@@ -43,6 +43,11 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <p>Donpiola 1.0</p>
+      <p>Copyright Donpiola. Do not distribute!</p>
+    </div>
+    
   </main>
 
   <style>
@@ -56,7 +61,7 @@
       }
       body,
       main {
-        position: fixed;
+        position: relative;
         width: 100%;
         height: 100%;
       }
@@ -118,5 +123,21 @@
       .credits {
         z-index: 100;
         color: white;
+      }
+      .footer{
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        z-index: 1000;
+        bottom: 0;
+        color: white;
+        align-items: end;
+        font-family: "Minecraft";
+        font-size: 25px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .footer p{
+        margin: 0px 15px;
       }
   </style>

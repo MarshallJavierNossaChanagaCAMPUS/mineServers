@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="modal_padre">
+  <div id="modalsito" class="modal_padre">
     <div class="modal_servers row">
       <div class="inputs_servers col-4">
         <p>Nombre del servidor</p>
@@ -170,6 +170,7 @@
     height: 100%;
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     background-image: url("../img/background_server.jpg");
@@ -177,6 +178,8 @@
     z-index: 150;
   }
   .inputs_servers {
+    width: 30%;
+    margin: auto;
     font-family: "Minecraft";
     font-size: 20px;
     display: flex;
@@ -192,7 +195,7 @@
   }
   .buttons_modal {
     width: 100%;
-    height: 25%;
+    height: 50%;
     display: flex !important;
     flex-direction: column;
     align-items: center !important;
