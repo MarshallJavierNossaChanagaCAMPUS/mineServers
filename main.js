@@ -1,37 +1,6 @@
 import "./components/my-server.js";
 import  "./components/my-index.js";
 
-let url = "http://localhost:3000/servers";
-
- const getJson = async () => {
-  try {
-    let res = await fetch(url)
-    let data = await res.json();
-    console.log(data);
-    /* data.forEach(dataServers => {
-      servers.insertAdjacentHTML(
-        "beforeend",     `
-        <div class="cards" id="${ip}">
-              <img src="${dataServers[0].favicon}" width="15%">
-              <div class="server_padre">
-                  <div class="server_info">
-                      <h2>${name}</h2>
-                      <h2>${dataServers[0].players.now}/${dataServers[0].players.max} <img class="senal-icon" src="../img/signal.png" width="35px"></h2>
-                  </div>
-                  <div class="server_text">
-                      <h2>${dataServers[0].motd || dataServers[0].motd_json}</h2>
-                  </div>
-              </div>
-          </div>
-      `
-      )
-    }) */
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-getJson();
 /* Botones index */
 
 /* let index = document.querySelector("#main_index");

@@ -9,6 +9,34 @@ export class myServer extends HTMLElement{
         super();
         this.attachShadow({mode: "open"}); 
     }
+    async getJson(){
+        this.urlJson = `http://localhost:3000/servers`
+            try {
+                let res = await fetch(this.urlJson)
+                let data = await res.json();
+                console.log(data);
+                /* data.forEach(dataServers => {
+                  servers.insertAdjacentHTML(
+                    "beforeend",     `
+                    <div class="cards" id="${ip}">
+                          <img src="${dataServers[0].favicon}" width="15%">
+                          <div class="server_padre">
+                              <div class="server_info">
+                                  <h2>${name}</h2>
+                                  <h2>${dataServers[0].players.now}/${dataServers[0].players.max} <img class="senal-icon" src="../img/signal.png" width="35px"></h2>
+                              </div>
+                              <div class="server_text">
+                                  <h2>${dataServers[0].motd || dataServers[0].motd_json}</h2>
+                              </div>
+                          </div>
+                      </div>
+                  `
+                  )
+                }) */
+              } catch (error) {
+                console.log(error);
+              }
+    }
     connectedCallback(){
         Promise.resolve(myServer.components()).then(html=>{
             this.shadowRoot.innerHTML = html
@@ -28,20 +56,24 @@ export class myServer extends HTMLElement{
             /* Escuchadores de eventos */
 
             this.anadirServidor.addEventListener("click", (e)=>{
+                e.preventDefault();
                 this.modal = this.shadowRoot.querySelector("#modalsito");
                 this.modal.classList.remove("modal_padre");
             });
 
             this.cerrarServer.addEventListener("click", (e)=>{
+                e.preventDefault();
                 this.myIndex.classList.remove("modal_padre");
                 this.myServer.classList.add("modal_padre");
             });
 
-            /* Ecuchador guardar servidor */
+            /* Escuchador guardar servidor */
         
             this.guardarServidor.addEventListener("click", (e) => {
-                this.shadowRoot.querySelector("#form");
-                this.formData = Object.fromEntries(new FormData(this.shadowRoot.querySelector("#form")));
+                e.preventDefault();
+                e.stopPropagation()
+                this.form = this.shadowRoot.querySelector("#form");
+                this.formData = Object.fromEntries(new FormData(this.form));
                 console.log(this.formData);
 
                 /* Url mineAPI & json server */
@@ -73,12 +105,17 @@ export class myServer extends HTMLElement{
                 };
 
                 this.listAPI();
+
                 this.modal.classList.add("modal_padre");
+
+                return false;
             });
 
             this.cancelarServidor.addEventListener("click", (e) => {
+                e.preventDefault();
                 this.modal.classList.add("modal_padre");
             });
+
         })
     }
 
