@@ -82,43 +82,47 @@ export class myServer extends HTMLElement {
     this.form = this.shadowRoot.querySelector("#form");
     this.formData = Object.fromEntries(new FormData(this.form));
     console.log(this.formData);
-  
+
     /* Url mineAPI & json server */
     this.url = `https://mcapi.us/server/status?ip=${this.formData.ip}`;
-    this.urlJson = `http://localhost:4000/servers`;
-  
+    this.urlJson = `http://localhost:3000/servers`;
+
     /* Llama a la mineAPI */
     this.listAPI = async function () {
-        try {
-          const data = await fetch(this.url);
-          const data2 = await data.json();
-          console.log(data2);
-          
-          // Verificar si los datos ya existen en el servidor
-          const existingData = await fetch(this.urlJson);
-          const existingData2 = await existingData.json();
-          const matchingData = existingData2.find((item) => item.ip === data2.ip);
-          if (matchingData) {
-            console.log("Los datos ya existen en el servidor");
-            return { message: "Los datos ya existen en el servidor" };
-          }
-          // Si los datos no existen, agregarlos al servidor
-          const res = fetch(this.urlJson, {
-            method: "POST",
-            body: JSON.stringify(data2),
-            headers: { "Content-Type": "application/json" },
-          });
-          return { message: "Datos agregados correctamente" };
-        } catch (error) {
-          console.log(error);
-          return { error: "Ocurrió un error al agregar los datos" };
-        }
-      };
+      try {
+        const data = await fetch(this.url);
+        const data2 = await data.json();
 
-      this.listAPI();
-  
+        // Verificar si los datos ya existen en el servidor
+        const existingData = await fetch(this.urlJson);
+        const existingData2 = await existingData.json();
+        const matchingData = existingData2.find((item) => item.ip === data2.ip);
+        if (matchingData) {
+          console.log("Los datos ya existen en el servidor");
+        }
+        // Si los datos no existen, agregarlos al servidor
+        const res = fetch(this.urlJson, {
+          method: "POST",
+          body: JSON.stringify(data2),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const ws = new Worker("../worker.js", { type: "module" });
+
+        ws.postMessage({ module: "postServer", data: data2 });
+
+        ws.addEventListener("message", (e) => {
+          console.log(e);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    this.listAPI();
+
     this.modal.classList.add("modal_padre");
-  
+
     return false;
   }
 }
