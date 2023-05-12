@@ -1,130 +1,20 @@
-let pathName = new URL(import.meta.url).pathname;
-let name = pathName.split("/").pop().replace(".js", "");
+import config from "../storage/config.js";
 
 export class myServer extends HTMLElement {
+  static url = import.meta.url;
   static async components() {
-    return await (await fetch(pathName.replace(".js", ".html"))).text();
-  }
-  constructor() {
+    return await ((await fetch(config.uri(myServer.url))).text());
+  };
+  constructor(){
     super();
-    this.attachShadow({ mode: "open" });
-  }
-  async getJson() {
-    this.urlJson = `http://localhost:3000/servers`;
-    try {
-      let res = await fetch(this.urlJson);
-      let data = await res.json();
-      console.log(data);
-      /* data.forEach(dataServers => {
-                  servers.insertAdjacentHTML(
-                    "beforeend",     `
-                    <div class="cards" id="${ip}">
-                          <img src="${dataServers[0].favicon}" width="15%">
-                          <div class="server_padre">
-                              <div class="server_info">
-                                  <h2>${name}</h2>
-                                  <h2>${dataServers[0].players.now}/${dataServers[0].players.max} <img class="senal-icon" src="../img/signal.png" width="35px"></h2>
-                              </div>
-                              <div class="server_text">
-                                  <h2>${dataServers[0].motd || dataServers[0].motd_json}</h2>
-                              </div>
-                          </div>
-                      </div>
-                  `
-                  )
-                }) */
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  connectedCallback() {
-    Promise.resolve(myServer.components()).then((html) => {
+    this.attachShadow({mode: "open"});
+  };
+  connectedCallback(){
+    Promise.resolve(myServer.components()).then( html => {
       this.shadowRoot.innerHTML = html;
-
-      /* Querys selectores xd */
-
-      this.myIndex = document.querySelector("#myIndex");
-      this.myServer = document.querySelector("#myServer");
-
-      this.anadirServidor = this.shadowRoot.querySelector("#anadir_servidor");
-
-      this.guardarServidor = this.shadowRoot.querySelector("#guardar_servidor");
-      this.cancelarServidor =
-        this.shadowRoot.querySelector("#cancelar_servidor");
-
-      this.cerrarServer = this.shadowRoot.querySelector("#cerrar_servers");
-
-      /* Escuchadores de eventos */
-
-      this.anadirServidor.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.modal = this.shadowRoot.querySelector("#modalsito");
-        this.modal.classList.remove("modal_padre");
-      });
-
-      this.cerrarServer.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.myIndex.classList.remove("modal_padre");
-        this.myServer.classList.add("modal_padre");
-      });
-
-      /* Escuchador guardar servidor */
-
-      this.guardarServidor.addEventListener(
-        "click",
-        this.handleEvent.bind(this)
-      );
+      this.cerrar = this.shadowRoot.querySelector("#cerrar_servers")
     });
-  }
-  handleEvent(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.form = this.shadowRoot.querySelector("#form");
-    this.formData = Object.fromEntries(new FormData(this.form));
-    console.log(this.formData);
+  };
+};
 
-    /* Url mineAPI & json server */
-    this.url = `https://mcapi.us/server/status?ip=${this.formData.ip}`;
-    this.urlJson = `http://localhost:3000/servers`;
-
-    /* Llama a la mineAPI */
-    this.listAPI = async function () {
-      try {
-        const data = await fetch(this.url);
-        const data2 = await data.json();
-
-        // Verificar si los datos ya existen en el servidor
-        const existingData = await fetch(this.urlJson);
-        const existingData2 = await existingData.json();
-        const matchingData = existingData2.find((item) => item.ip === data2.ip);
-        if (matchingData) {
-          console.log("Los datos ya existen en el servidor");
-        }
-        // Si los datos no existen, agregarlos al servidor
-        const res = fetch(this.urlJson, {
-          method: "POST",
-          body: JSON.stringify(data2),
-          headers: { "Content-Type": "application/json" },
-        });
-
-        const ws = new Worker("../worker.js", { type: "module" });
-
-        ws.postMessage({ module: "postServer", data: data2 });
-
-        ws.addEventListener("message", (e) => {
-          console.log(e);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    this.listAPI();
-
-    this.modal.classList.add("modal_padre");
-
-    return false;
-  }
-}
-
-customElements.define(name, myServer);
+customElements.define(config.name(myServer.url), myServer);

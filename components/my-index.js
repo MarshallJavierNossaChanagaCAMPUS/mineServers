@@ -1,5 +1,4 @@
-import config from "../components/config.js";
-
+import config from "../storage/config.js";
 
 export default class myIndex extends HTMLElement{
     static url = import.meta.url;
