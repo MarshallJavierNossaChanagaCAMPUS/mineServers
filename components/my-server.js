@@ -88,6 +88,8 @@ export class myServer extends HTMLElement {
             this.index = document.querySelector("#myIndex");
             this.servers = document.querySelector("#myServer");
 
+            this.eliminar = this.shadowRoot.querySelector("#eliminar_servidor");
+            this.eliminador = this.shadowRoot.querySelector("#eliminador");
             this.anadir = this.shadowRoot.querySelector("#anadir_servidor");
             this.cerrar = this.shadowRoot.querySelector("#cerrar_servers");
 
@@ -95,6 +97,16 @@ export class myServer extends HTMLElement {
 
             this.guardarModal = this.shadowRoot.querySelector("#guardar_servidor");
             this.cerrarModal = this.shadowRoot.querySelector("#cancelar_servidor");
+
+            this.eliminar.addEventListener("click", (e) => {
+                
+                this.eliminador.classList.remove("modal_padre");
+                
+            })
+
+            this.eliminador.addEventListener("click", (e) => {
+                console.log("chaito chao");
+            })
 
             this.anadir.addEventListener("click", (e) => {
                 this.anadirModal.classList.remove("modal_padre");

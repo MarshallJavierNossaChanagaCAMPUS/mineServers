@@ -1,7 +1,7 @@
 <div id="container_multiplayer">
   <div id="header">
     <div class="nav">
-      
+      <input type="number" id="eliminador" class="modal_padre" placeholder="Digite id del server que desea eliminar">
     </div>
   </div>
 
@@ -10,8 +10,8 @@
   </div>
 
   <div class="buttons_foot col">
-    <a class="buttons_server_a"
-      ><button class="buttons_server" disabled>Eliminar servidor</button></a
+    <a class="buttons_server_a" id="eliminar_servidor"
+      ><button class="buttons_server">Eliminar servidor</button></a
     >
     <a class="buttons_server_a" id="anadir_servidor"
       ><button class="buttons_server">Añadir servidor</button></a
@@ -75,7 +75,7 @@
     position: fixed;
     z-index: 99;
   }
-  .searcher {
+  #eliminador {
     height: 40px;
     width: 40%;
     position: fixed;
