@@ -1,6 +1,12 @@
 import "./components/my-server.js";
 import  "./components/my-index.js";
 
+
+
+
+
+
+
 /* Botones index */
 
 /* let index = document.querySelector("#main_index");

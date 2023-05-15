@@ -5,11 +5,11 @@ let url = `http://localhost:3000/servers`;
 export const getServers = async () => {
     try {
         let res = await fetch(url);
-        let data = res.json();
+        let dataJson = await res.json();
+        return dataJson;
     } catch (error) {
         console.log(error);
     }
-    
 }
 
 //Subir servidor al json server

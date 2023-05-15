@@ -1,3 +1,4 @@
+import { getServers, postServer } from "../api/api.js";
 import config from "../storage/config.js";
 
 export class myServer extends HTMLElement {
@@ -14,8 +15,6 @@ export class myServer extends HTMLElement {
         (e.type == "click") ? this.worker() : undefined;
     };
     async worker(){
-        console.log("hola");
-
         this.form = this.shadowRoot.querySelector("#form");
 
         this.serversCards = this.shadowRoot.querySelector('#servers');
@@ -36,14 +35,31 @@ export class myServer extends HTMLElement {
 
         await listServer();
 
-        console.log(this.data);
+        await postServer(this.dataAPI);
+
+        this.dataJson;
+
+        const getServers = async () => {
+            let url = `http://localhost:3000/servers`;
+            try {
+                let res = await fetch(url);
+                this.dataJson = await res.json();
+                return this.dataJson;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        await getServers();
 
         const ws = new Worker("./storage/worker.js", {type: "module"});
 
-        ws.postMessage({module: "postServer", data: this.dataAPI});
+        ws.postMessage({module: "postServer", data: this.dataJson});
 
         ws.addEventListener("message", (e) => {
+            e.preventDefault()
             this.serversCards.insertAdjacentHTML("beforeend", e.data);
+            
             ws.terminate();
         })
     }
@@ -69,8 +85,9 @@ export class myServer extends HTMLElement {
             this.guardarModal.addEventListener("click", (e) => {
                 this.anadirModal.classList.add("modal_padre");
                 this.handleEvent(e);
-            })
+            });
 
+            
             this.cerrarModal.addEventListener("click", (e) => {
                 this.anadirModal.classList.add("modal_padre");
             })
