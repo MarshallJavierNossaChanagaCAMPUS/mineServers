@@ -94,9 +94,29 @@
         font-family: "Minecraft";
         font-size: 40px;
         text-shadow: 0.1em 0.1em #333;
+        animation-name: textAnimation;
+        animation-duration: 1s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        
+      }
+      @keyframes textAnimation {
+        0% {transform: none;
+          -webkit-transform: rotate(-20deg);
+          -moz-transform: rotate(-20deg);}
+        50% {
+          transform: scale(1.30);}
+        100% {transform: scale(1);
+          -webkit-transform: rotate(-20deg);
+        -moz-transform: rotate(-20deg);
+        }
+      }
+      .logoText{
         -webkit-transform: rotate(-20deg);
         -moz-transform: rotate(-20deg);
       }
+            
+      
       .container-buttons {
         height: 70%;
       }

@@ -17,8 +17,6 @@ export class myServer extends HTMLElement {
     async worker(){
         this.form = this.shadowRoot.querySelector("#form");
 
-        this.serversCards = this.shadowRoot.querySelector('#servers');
-
         this.data = Object.fromEntries(new FormData(this.form));
 
         this.dataAPI;
@@ -37,33 +35,53 @@ export class myServer extends HTMLElement {
 
         await postServer(this.dataAPI);
 
+       
+    }
+    async showServers(){
+        console.log("hola4");
+
+        
+
         this.dataJson;
 
-        const getServers = async () => {
-            let url = `http://localhost:3000/servers`;
-            try {
-                let res = await fetch(url);
-                this.dataJson = await res.json();
-                return this.dataJson;
-            } catch (error) {
-                console.log(error);
+        addEventListener("DOMContentLoaded", (e) => {
+            const nose = async () => {
+
+
+                
+                
+            const getServers = async () => {
+                let url = `http://localhost:3000/servers`;
+                try {
+                    let res = await fetch(url);
+                    this.dataJson = await res.json();
+                    return this.dataJson;
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            await getServers();
+
+            const ws = new Worker("./storage/worker.js", {type: "module"});
+    
+            ws.postMessage({module: "postServer", data: this.dataJson});
+    
+            ws.addEventListener("message", (e) => {
+                this.serversCards = this.shadowRoot.querySelector('#servers');
+                console.log(e.data);
+                console.log(this.serversCards);
+
+                this.serversCards.innerHTML = e.data
+
+                ws.terminate();
+            })
             }
-        }
-
-        await getServers();
-
-        const ws = new Worker("./storage/worker.js", {type: "module"});
-
-        ws.postMessage({module: "postServer", data: this.dataJson});
-
-        ws.addEventListener("message", (e) => {
-            e.preventDefault()
-            this.serversCards.insertAdjacentHTML("beforeend", e.data);
-            
-            ws.terminate();
+            nose()
         })
     }
     connectedCallback() {
+        this.showServers()
         Promise.resolve(myServer.components()).then(html => {
             this.shadowRoot.innerHTML = html;
 
@@ -87,7 +105,6 @@ export class myServer extends HTMLElement {
                 this.handleEvent(e);
             });
 
-            
             this.cerrarModal.addEventListener("click", (e) => {
                 this.anadirModal.classList.add("modal_padre");
             })
