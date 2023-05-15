@@ -13,7 +13,7 @@ main {
   height: 100%;
 }
 .blur {
-  background-image: url(../img/bg1.gif);
+  background-image: url(./img/bg1.gif);
   filter: blur(5px);
   background-size: cover;
   background-repeat: no-repeat;
